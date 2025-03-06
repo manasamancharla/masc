@@ -1,0 +1,33 @@
+.banner {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background: var(--color-primary-variant);
+	color: var(--color-text1);
+	text-align: center;
+	padding: 10px;
+	font-size: 12px;
+	font-weight: bold;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	z-index: 1000;
+}
+
+.close-btn {
+	background: none;
+	border: none;
+	color: var(--color-text1);
+	font-size: 16px;
+	cursor: pointer;
+	position: absolute;
+	right: 15px;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.close-btn:hover {
+	color: #ddd;
+}
