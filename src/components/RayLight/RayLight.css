@@ -1,0 +1,9 @@
+.ray-light {
+  background-color: var(--ray-light-bg);
+  background: var(--ray-light-gradient);
+}
+
+.ray-light-secondary {
+  background-color: var(--ray-light-secondary-bg);
+  background: var(--ray-light-secondary-gradient);
+}
