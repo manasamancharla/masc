@@ -1,3 +1,9 @@
+import { Button } from "./components/ui/Button";
+import { Github } from "./components/icons/Github";
+import { Linkedin } from "./components/icons/Linkedin";
+import { Mail } from "./components/icons/Mail";
+import { Resume } from "./components/icons/Resume";
+
 const Hero = () => {
   return (
     <>
@@ -9,6 +15,20 @@ const Hero = () => {
           I started with JavaScript but adaptable across technologies, I thrive
           on problem-solving and building impactful solutions.
         </p>
+        <div className="flex flex-wrap items-center gap-8 px-0 py-2.5 relative">
+          <Button intent="cta">
+            <Github />
+          </Button>
+          <Button intent="cta">
+            <Linkedin />
+          </Button>
+          <Button intent="cta">
+            <Mail />
+          </Button>
+          <Button intent="cta">
+            <Resume />
+          </Button>
+        </div>
       </section>
     </>
   );

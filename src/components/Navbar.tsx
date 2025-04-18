@@ -79,7 +79,7 @@ const Navbar = () => {
             </DockIcon>
           ))}
 
-          <div className={`border-l border-text h-full`} />
+          <div className={`border-l border-[#232B34] h-full`} />
 
           {THEME.navbar.map((item) => (
             <DockIcon key={item.label}>

@@ -22,7 +22,7 @@ export interface DockProps extends VariantProps<typeof dockVariants> {
   ref?: Ref<HTMLInputElement>;
 }
 
-const DEFAULT_SIZE = 40;
+const DEFAULT_SIZE = 35;
 const DEFAULT_MAGNIFICATION = 60;
 const DEFAULT_DISTANCE = 140;
 
@@ -117,7 +117,7 @@ const DockIcon = ({
   const heightTransform = useTransform(
     distanceCalc,
     [-distance, 0, distance],
-    [size, 45, size],
+    [size, 40, size],
   );
 
   const scaleSize = useSpring(sizeTransform, {
