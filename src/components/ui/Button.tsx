@@ -1,6 +1,5 @@
 import { cva, type VariantProps } from "class-variance-authority";
 
-// NEED TO WORK ON COLOR CODES
 const button = cva(
   [
     "flex items-center flex-col rounded-xl gap-2.5 border border-solid overflow-hidden justify-center transition-colors",
@@ -9,33 +8,38 @@ const button = cva(
     variants: {
       intent: {
         cta: [
-          "bg-cta-button-bg border-cta-button-border hover:bg-cta-button-hover",
+          "bg-cta-button-bg border-cta-button-border hover:bg-cta-button-hover w-[50px] h-[50px] p-2 md:w-[60px] md:h-[60px] md:p-3 xl:w-[70px] xl:h-[70px]",
         ],
-        secondary: ["bg-gray-500", "text-white", "hover:bg-gray-600"],
-        danger: ["bg-red-500", "text-white", "hover:bg-red-600"],
+        comingSoon: [""],
       },
       size: {
-        small: ["w-[70px]", "h-[70px]", "p-3"],
-        medium: ["text-base", "py-2", "px-4"],
-        large: ["text-lg", "py-3", "px-6"],
+        small: [""],
+        medium: [""],
+        large: [""],
       },
     },
     defaultVariants: {
       intent: "cta",
-      size: "small",
     },
   },
 );
 
-// Extract variant props type
 type ButtonProps = VariantProps<typeof button> & {
   children: React.ReactNode;
   className?: string;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 };
 
-// Button component
-export const Button = ({ intent, size, children, className }: ButtonProps) => {
+export const Button = ({
+  intent,
+  size,
+  children,
+  className,
+  onClick,
+}: ButtonProps) => {
   return (
-    <button className={button({ intent, size, className })}>{children}</button>
+    <button className={button({ intent, size, className })} onClick={onClick}>
+      {children}
+    </button>
   );
 };

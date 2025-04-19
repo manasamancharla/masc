@@ -7,7 +7,7 @@ import { Resume } from "./components/icons/Resume";
 const Hero = () => {
   return (
     <>
-      <section className="flex h-screen w-full flex-col gap-2 pb-32 pt-24 sm:justify-center">
+      <section className="flex min-h-screen w-full flex-col gap-3 pb-32 pt-24 justify-center">
         <h1 className="responsive-h1">
           Hi, I’m Manas. <br /> A Software engineer.
         </h1>
@@ -15,7 +15,7 @@ const Hero = () => {
           I started with JavaScript but adaptable across technologies, I thrive
           on problem-solving and building impactful solutions.
         </p>
-        <div className="flex flex-wrap items-center gap-8 px-0 py-2.5 relative">
+        <div className="flex flex-wrap items-center gap-6 md:gap-8 px-0 py-2.5 relative">
           <Button intent="cta">
             <Github />
           </Button>
