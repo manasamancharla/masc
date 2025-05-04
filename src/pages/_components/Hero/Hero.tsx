@@ -1,8 +1,8 @@
-import { Button } from "./components/ui/Button";
-import { Github } from "./components/icons/Github";
-import { Linkedin } from "./components/icons/Linkedin";
-import { Mail } from "./components/icons/Mail";
-import { Resume } from "./components/icons/Resume";
+import { Button } from "../../../components/ui/Button";
+import { Github } from "../../../components/icons/Github";
+import { Linkedin } from "../../../components/icons/Linkedin";
+import { Mail } from "../../../components/icons/Mail";
+import { Resume } from "../../../components/icons/Resume";
 
 const Hero = () => {
   return (

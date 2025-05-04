@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router";
 
 import Intro from "./pages/Intro";
-import Blog from "./Blog";
+import Blog from "./pages/Blog";
 import Navbar from "./components/Navbar";
 
 const App = () => {

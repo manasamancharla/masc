@@ -1,6 +1,7 @@
 import type { SVGProps } from "react";
+import { cn } from "../../lib/utils";
 
-export function Moon(props: SVGProps<SVGSVGElement>) {
+export function Moon({ className, ...props }: SVGProps<SVGSVGElement>) {
   return (
     <svg
       width="26"
@@ -9,6 +10,7 @@ export function Moon(props: SVGProps<SVGSVGElement>) {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
+      className={cn(className)}
       {...props}
     >
       <path

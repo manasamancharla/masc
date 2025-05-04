@@ -1,5 +1,6 @@
-import Hero from "../Hero";
 import RayLight from "../components/RayLight/RayLight";
+import Hero from "./_components/Hero/Hero";
+import Bento from "./_components/Bento/BentoSection";
 
 const Intro = () => {
   return (
@@ -11,6 +12,7 @@ const Intro = () => {
       </div>
       <main className="wrapper">
         <Hero />
+        <Bento />
       </main>
     </>
   );
