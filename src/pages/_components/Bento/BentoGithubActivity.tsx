@@ -1,9 +1,10 @@
+import { useState } from "react";
 import HeatMap, { type SVGProps } from "@uiw/react-heat-map";
-import React from "react";
+import BentoBadge from "./BentoBadge";
 
-import { formatNumber, getDateSuffix } from "./lib/utils";
-import type { GithubContributions } from "./api";
-import { Github } from "./components/icons/Github";
+import { formatNumber, getDateSuffix } from "../../../lib/utils";
+import type { GithubContributions } from "../../../api";
+import { Github } from "../../../components/icons/Github";
 
 const getDateProps = () => {
   const today = new Date();
@@ -39,19 +40,12 @@ const mapHeight = 8 * (rectSize + space) - space;
 
 const BentoGithubActivity = (props: GithubContributions) => {
   const defaultValue = `${formatNumber(props.totalContributions)} contributions in the last year`;
-  const [hoveredTile, setHoveredTile] = React.useState<string | null>(
-    defaultValue,
-  );
+  const [hoveredTile, setHoveredTile] = useState<string | null>(defaultValue);
 
   return (
     <div className="relative flex h-full flex-col justify-between">
-      <div className="inline-flex items-center gap-[7px] p-2 relative flex-[0_0_auto]">
-        <div className="w-10 h-10 bg-[#000000] flex justify-center items-center rounded-lg">
-          <Github className="w-5 h-5" />
-        </div>
+      <BentoBadge icon={Github} label="Github" />
 
-        <p className="body-bold text-text-neutral">Github</p>
-      </div>
       <div className="w-full overflow-x-auto">
         <HeatMap
           {...getDateProps()}

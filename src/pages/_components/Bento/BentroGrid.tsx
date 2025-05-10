@@ -1,5 +1,6 @@
 import BentoTechStack from "./BentoTechStack";
 import BentoCard from "./BentoCard";
+import BentoBadge from "./BentoBadge";
 
 import { X } from "../../../components/icons/X";
 import { Leetcode } from "../../../components/icons/Leetcode";
@@ -10,7 +11,7 @@ import { Repository } from "../../../components/icons/Repository";
 import { Commit } from "../../../components/icons/Commit";
 import { Branch } from "../../../components/icons/Branch";
 
-import BentoGithubActivity from "../../../BentoGithubActivity";
+import BentoGithubActivity from "./BentoGithubActivity";
 
 import { useEffect, useState } from "react";
 
@@ -45,13 +46,7 @@ const BentoGrid = () => {
     md:grid md:grid-cols-[repeat(36,_minmax(0,_1fr))] md:auto-rows-[minmax(0,1fr)] md:gap-4"
       >
         <BentoCard gridStyles="md:col-start-1 md:col-end-20 md:row-start-1 md:row-end-2 max-md:w-full ">
-          <div className="inline-flex items-center gap-[7px] p-2 relative flex-[0_0_auto]">
-            <div className="w-10 h-10 bg-[#000000] flex justify-center items-center rounded-lg">
-              <TechStack className="w-5 h-5" />
-            </div>
-
-            <p className="body-bold text-text-neutral">Tech Stack</p>
-          </div>
+          <BentoBadge icon={TechStack} label="Tech Stack" />
 
           <BentoTechStack />
 
@@ -69,13 +64,8 @@ const BentoGrid = () => {
           className="gap-4"
         >
           <BentoCard className="w-full flex-1/3">
-            <div className="inline-flex items-center  gap-[7px] p-2 relative flex-[0_0_auto]">
-              <div className="w-10 h-10 bg-[#000000] flex justify-center items-center rounded-lg">
-                <About className="w-5 h-5" />
-              </div>
+            <BentoBadge icon={About} label="About" />
 
-              <p className="body-bold text-text-neutral">About</p>
-            </div>
             <p className="body-bold text-text-neutral">
               As a <span className="text-text">Software engineer</span>, I
               thrive on building scalable and efficient applications that
@@ -100,13 +90,8 @@ const BentoGrid = () => {
           gridStyles="md:col-start-1 md:col-end-12 md:row-start-2 md:row-end-3 
                       max-md:w-full"
         >
-          <div className="inline-flex items-center gap-[7px] p-2 relative flex-[0_0_auto]">
-            <div className="w-10 h-10 bg-[#000000] flex justify-center items-center rounded-lg">
-              <Repository className="w-5 h-5" />
-            </div>
+          <BentoBadge icon={Repository} label="Last pushed" />
 
-            <p className="body-bold text-text-neutral">Last pushed</p>
-          </div>
           <p className="heading-5-bold text-text p-2">
             {repoData?.latestRepository.name}
           </p>
