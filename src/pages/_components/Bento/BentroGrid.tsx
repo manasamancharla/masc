@@ -10,6 +10,7 @@ import { About } from "../../../components/icons/About";
 import { Repository } from "../../../components/icons/Repository";
 import { Commit } from "../../../components/icons/Commit";
 import { Branch } from "../../../components/icons/Branch";
+import { ArrowRight } from "../../../components/icons/ArrowRight";
 
 import BentoGithubActivity from "./BentoGithubActivity";
 
@@ -18,26 +19,27 @@ import { useEffect, useState } from "react";
 import {
   getGithubContributions,
   GithubContributions,
-  getGithubRepoInfo,
-  GithubRepoInfo,
+  getLatestPublicCommit,
+  LatestPublicCommit,
 } from "../../../api";
 
 const GITHUB_PUBLIC_TOKEN = import.meta.env.VITE_GITHUB_PUBLIC_TOKEN;
+const GITHUB_USERNAME = import.meta.env.VITE_GITHUB_USERNAME;
 
 const BentoGrid = () => {
-  const [data, setData] = useState<GithubContributions | null>(null);
-  const [repoData, setRepoData] = useState<GithubRepoInfo | null>(null);
+  const [contributionData, setContributionData] =
+    useState<GithubContributions | null>(null);
+  const [repoData, setRepoData] = useState<LatestPublicCommit | null>(null);
 
   useEffect(() => {
-    getGithubContributions("manasamancharla", GITHUB_PUBLIC_TOKEN)
-      .then(setData)
-      .catch(console.error);
+    getGithubContributions(GITHUB_USERNAME, GITHUB_PUBLIC_TOKEN)
+      .then(setContributionData)
+      .catch();
 
-    getGithubRepoInfo("manasamancharla", GITHUB_PUBLIC_TOKEN)
+    getLatestPublicCommit(GITHUB_USERNAME, GITHUB_PUBLIC_TOKEN)
       .then(setRepoData)
-      .catch(console.error);
+      .catch();
   }, []);
-  console.log(repoData);
   return (
     <>
       <section
@@ -92,40 +94,35 @@ const BentoGrid = () => {
         >
           <BentoBadge icon={Repository} label="Last pushed" />
 
-          <p className="heading-5-bold text-text p-2">
-            {repoData?.latestRepository.name}
-          </p>
+          <p className="heading-5-bold text-text p-2">{repoData?.repoName}</p>
           <div className="flex flex-col gap-4 text-text p-2 w-full">
-            <div className="inline-flex gap-2 items-center">
-              <Branch className="w-3 h-3 text-text-neutral" />
-              <p className="body-bold text-text-neutral">
-                {repoData?.latestRepository.branch}
-              </p>
+            <div className="flex gap-2 items-center">
+              <Branch className="w-3 h-3 min-w-[12px] min-h-[12px] text-text-neutral" />
+              <p className="body-bold text-text-neutral">{repoData?.branch}</p>
             </div>
 
-            <div className="inline-flex gap-2 items-center">
-              <Commit className="w-3 h-3 text-text-neutral" />
+            <div className="flex gap-2 items-center">
+              <Commit className="w-3 h-3 min-w-[12px] min-h-[12px] text-text-neutral" />
               <p className="body-bold text-text-neutral">
-                {/* {repoData?.latestCommit.message} */}
-                Hello
+                {repoData?.commitMessage}
               </p>
             </div>
 
             <div className="flex justify-between items-start w-full">
               <p className="body-bold text-text-neutral">
-                {/* {repoData?.latestCommit?.sha} */}
-                123
+                {repoData?.commitSha}
               </p>
 
               <p className="body-bold text-text-neutral">
-                {repoData?.latestRepository?.timeSincePush}
+                {repoData?.timeSincePush}
               </p>
             </div>
           </div>
           <div className="flex-1 w-full flex items-center justify-center">
-            <div className="border-1 border-text inline-flex px-2 py-4">
+            <button className="border border-solid body-bold rounded-lg border-text-neutral flex items-center gap-2 py-2 px-4 ">
               View
-            </div>
+              <ArrowRight className="w-6 h-6" />
+            </button>
           </div>
         </BentoCard>
 
@@ -134,7 +131,12 @@ const BentoGrid = () => {
                       md:col-start-12 md:col-end-36 md:row-start-2 md:row-end-3 
                       max-md:w-full px-4 py-6"
         >
-          <BentoGithubActivity {...data} />
+          {contributionData && (
+            <BentoGithubActivity
+              totalContributions={contributionData.totalContributions}
+              contributions={contributionData.contributions}
+            />
+          )}
         </div>
       </section>
     </>
