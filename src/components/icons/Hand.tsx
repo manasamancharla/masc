@@ -1,6 +1,7 @@
 import type { SVGProps } from "react";
+import { cn } from "../../lib/utils";
 
-export function Hand(props: SVGProps<SVGSVGElement>) {
+export function Hand({ className, ...props }: SVGProps<SVGSVGElement>) {
   return (
     <svg
       width="24"
@@ -9,6 +10,7 @@ export function Hand(props: SVGProps<SVGSVGElement>) {
       fill="none"
       aria-hidden="true"
       xmlns="http://www.w3.org/2000/svg"
+      className={cn(className)}
       {...props}
     >
       <mask id="path-1-inside-1_457_141" fill="white">
