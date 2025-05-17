@@ -1,0 +1,20 @@
+.gradient-border {
+  background:
+    linear-gradient(#0f172a, #0f172a) padding-box,
+    linear-gradient(
+        129.49deg,
+        rgba(148, 163, 184, 0.41) 0%,
+        rgba(66, 73, 82, 0.41) 100%
+      )
+      border-box;
+  border: 1px solid transparent;
+  border-radius: 16px;
+}
+
+.gradient-bgColor {
+  background: linear-gradient(
+    129.461deg,
+    rgba(14, 18, 24, 25%) 0%,
+    rgba(74, 95, 126, 25%) 85%
+  );
+}
