@@ -1,4 +1,5 @@
 import BentoGrid from "./BentroGrid";
+import "./Bento.css";
 
 const BentoSection = () => {
   return (

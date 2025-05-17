@@ -2,6 +2,8 @@ import { request } from "graphql-request";
 import { ContributionsResponse, GET_CONTRIBUTIONS } from "./graphql";
 import { truncateText, getTimeSince } from "./lib/utils";
 
+const MEDIUM_USERNAME = import.meta.env.VITE_MEDIUM_USERNAME;
+
 export type ContributionDay = {
   count: number;
   date: string;
@@ -38,6 +40,21 @@ type GitHubPushEvent = {
     commits: GitHubCommit[];
   };
   created_at: string;
+};
+
+export type Article = {
+  title: string;
+  link: string;
+  pubDate: string;
+  thumbnail: string | null;
+  description: string;
+};
+
+type MediumAPIItem = {
+  title: string;
+  link: string;
+  pubDate: string;
+  description: string;
 };
 
 export const getGithubContributions = async (
@@ -116,4 +133,40 @@ export const getLatestPublicCommit = async (
     // console.error("Failed to fetch latest public commit:", error);
     return null;
   }
+};
+
+export const fetchLatestMediumArticles = async (
+  limit = 3,
+): Promise<Article[]> => {
+  const response = await fetch(
+    `https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@${MEDIUM_USERNAME}`,
+  );
+
+  const data = await response.json();
+
+  if (!data.items || !Array.isArray(data.items)) {
+    throw new Error("No articles found.");
+  }
+
+  const articles: Article[] = data.items
+    .slice(0, limit)
+    .map((item: MediumAPIItem) => {
+      const imgMatch = item.description.match(/<img[^>]+src="([^">]+)"/);
+      const thumbnail = imgMatch ? imgMatch[1] : null;
+
+      return {
+        title: item.title,
+        link: item.link,
+        pubDate: new Date(item.pubDate).toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        }),
+        thumbnail,
+        description:
+          item.description.replace(/<[^>]+>/g, "").slice(0, 100) + "...",
+      };
+    });
+
+  return articles;
 };
