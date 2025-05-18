@@ -2,6 +2,8 @@ import RayLight from "../components/RayLight/RayLight";
 import Hero from "./_components/Hero/Hero";
 import Bento from "./_components/Bento/BentoSection";
 import Insights from "./_components/Insights/Insights";
+import Projects from "./_components/Projects/Projects";
+import Contact from "./_components/Contact/Contact";
 
 const Intro = () => {
   return (
@@ -15,6 +17,8 @@ const Intro = () => {
         <Hero />
         <Bento />
         <Insights />
+        <Projects />
+        <Contact />
       </main>
     </>
   );

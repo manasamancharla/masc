@@ -40,6 +40,7 @@ const BentoGrid = () => {
       .then(setRepoData)
       .catch();
   }, []);
+
   return (
     <>
       <section
