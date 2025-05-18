@@ -19,43 +19,6 @@ const Insights = () => {
     fetchArticles();
   }, []);
 
-  // useEffect(() => {
-  //   fetch(
-  //     `https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@${MEDIUM_USERNAME}`,
-  //   )
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       if (!data.items) {
-  //         throw new Error("No articles found.");
-  //       }
-
-  //       const articles = data.items.slice(0, 3).map((item) => {
-  //         const imgMatch = item.description.match(/<img[^>]+src="([^">]+)"/);
-  //         const thumbnail = imgMatch ? imgMatch[1] : null;
-
-  //         return {
-  //           title: item.title,
-  //           link: item.link,
-  //           pubDate: new Date(item.pubDate).toLocaleDateString("en-US", {
-  //             year: "numeric",
-  //             month: "long",
-  //             day: "numeric",
-  //           }),
-  //           thumbnail,
-  //           description:
-  //             item.description.replace(/<[^>]+>/g, "").slice(0, 100) + "...",
-  //         };
-  //       });
-
-  //       setArticles(articles);
-  //       return;
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error fetching Medium articles:", error);
-  //       return [];
-  //     });
-  // }, []);
-
   return (
     <>
       <section className="flex min-h-screen w-full flex-col gap-3 pb-32 pt-24 justify-center">
