@@ -64,8 +64,10 @@ html {
 
   /* Overrides the existing color system */
   --color-*: initial;
-  --color-surface: oklch(0.95 0.0103 81.8);
-  --color-background: oklch(0.98 0.0093 99.98);
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-surface: #eee8d5;
+  --color-background: #fdf6e3;
   --color-text: oklch(0% 0 0);
   --color-text-neutral: oklch(20.02% 0 0 / 65%);
 
