@@ -24,41 +24,48 @@ const projects = [
 const Projects = () => {
   return (
     <>
-      <section className="flex min-h-screen w-full flex-col gap-3 pb-32 pt-24 justify-center">
-        <h2 className="responsive-h2 max-w-[593px] self-stretch text-text">
-          Projects in My Learning Journey.
-        </h2>
-        <p className="body-bold text-text-neutral max-w-[593px] self-stretch">
-          Exploring new technologies through real-world projects. Each project
-          marks a step forward in my coding journey
-        </p>
+      <section className="w-full min-h-screen flex flex-col items-center justify-center">
+        <div className="w-full max-w-[1040px] flex flex-col gap-6 pb-32 pt-24">
+          <h2 className="responsive-h2 max-w-[593px] self-stretch text-text">
+            Projects in My Learning Journey.
+          </h2>
+          <p className="body-bold text-text-neutral max-w-[593px] self-stretch">
+            Exploring new technologies through real-world projects. Each project
+            marks a step forward in my coding journey
+          </p>
 
-        <div className="grid grid-cols-2 gap-4 h-[470px] px-2 py-4">
-          {projects.map((project, index) => (
-            <div className="flex flex-col items-start gap-2 flex-1" key={index}>
-              <img
-                src={project.image}
-                alt="blog-img"
-                className="self-stretch h-[256px]"
-              />
-              <p className="subtitle-bold text-text-neutral">{project.year}</p>
-              <h4 className="heading-4-bold text-text self-stretch">
-                {project.title}
-              </h4>
-              <p className="body-regular text-text-neutral self-stretch">
-                {project.description}
-              </p>
-              <a
-                className="flex justify-center items-center gap-2"
-                href={project.link}
-                target="_blank"
-                rel="noreferrer"
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
+            {projects.map((project, index) => (
+              <div
+                key={index}
+                className="flex flex-col items-start overflow-hidden gap-2"
               >
-                <p className="subtitle-bold text-text">Read more</p>
-                <ArrowRight className="w-4 h-4 text-text" />
-              </a>
-            </div>
-          ))}
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="self-stretch w-full h-60 object-cover rounded-lg"
+                />
+                <p className="subtitle-bold text-text-neutral">
+                  {project.year}
+                </p>
+                <h4 className="heading-4-bold text-text self-stretch">
+                  {project.title}
+                </h4>
+                <p className="body-regular text-text-neutral self-stretch">
+                  {project.description}
+                </p>
+                <a
+                  className="flex justify-center items-center gap-2 hover:underline"
+                  href={project.link}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <p className="subtitle-bold text-text">Read more</p>
+                  <ArrowRight className="w-4 h-4 text-text" />
+                </a>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
     </>
