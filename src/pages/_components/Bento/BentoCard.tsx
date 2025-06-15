@@ -19,7 +19,6 @@ const BentoCard = ({
   return (
     <div
       className={cn(
-        "overflow-hidden relative",
         "flex flex-col items-start gap-3",
         padding && "px-4 py-6",
         !noBackground && "gradient-border gradient-bgColor rounded-2xl",

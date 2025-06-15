@@ -1,6 +1,7 @@
 import { useState } from "react";
 import HeatMap, { type SVGProps } from "@uiw/react-heat-map";
 import BentoBadge from "./BentoBadge";
+import { useIsDarkTheme } from "@/hooks/useTheme";
 
 import { formatNumber, getDateSuffix } from "../../../lib/utils";
 import type { GithubContributions } from "../../../api";
@@ -42,6 +43,8 @@ const BentoGithubActivity = (props: GithubContributions) => {
   const defaultValue = `${formatNumber(props.totalContributions)} contributions in the last year`;
   const [hoveredTile, setHoveredTile] = useState<string | null>(defaultValue);
 
+  const isDark = useIsDarkTheme();
+
   return (
     <div className="relative flex h-full flex-col justify-between">
       <BentoBadge icon={Github} label="Github" />
@@ -60,12 +63,21 @@ const BentoGithubActivity = (props: GithubContributions) => {
           rectProps={{ rx: 4 }}
           rectSize={rectSize}
           rectRender={renderRect((date) => setHoveredTile(date))}
-          panelColors={{
-            1: "#19222F",
-            4: "#0F4E43",
-            8: "#1F977B",
-            12: "#1EF4AE",
-          }}
+          panelColors={
+            isDark
+              ? {
+                  1: "#19222F",
+                  4: "#0F4E43",
+                  8: "#1F977B",
+                  12: "#1EF4AE",
+                }
+              : {
+                  1: "rgba(90, 120, 130, 0.16)",
+                  4: "#4ade80",
+                  8: "#22c55e",
+                  12: "#16a34a",
+                }
+          }
         />
       </div>
       <p className="body-bold text-text-neutral text-right">{hoveredTile}</p>

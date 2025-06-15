@@ -18,3 +18,14 @@
     rgba(74, 95, 126, 25%) 85%
   );
 }
+
+[data-theme="light"] {
+  .gradient-border {
+    border: 1px solid #93a1a1;
+    border-radius: 16px;
+  }
+
+  .gradient-bgColor {
+    background: #eee8d5;
+  }
+}

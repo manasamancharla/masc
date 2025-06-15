@@ -1,6 +1,6 @@
 import { request } from "graphql-request";
 import { ContributionsResponse, GET_CONTRIBUTIONS } from "./graphql";
-import { truncateText, getTimeSince } from "./lib/utils";
+import { getTimeSince } from "./lib/utils";
 
 const MEDIUM_USERNAME = import.meta.env.VITE_MEDIUM_USERNAME;
 
@@ -122,7 +122,7 @@ export const getLatestPublicCommit = async (
       repoUrl: `https://github.com/${pushEvent.repo.name}`,
       branch,
       commitSha: commit.sha.slice(0, 7),
-      commitMessage: truncateText(commit.message, 30),
+      commitMessage: commit.message,
       commitUrl: commit.url
         .replace("api.", "")
         .replace("repos/", "")
@@ -163,8 +163,7 @@ export const fetchLatestMediumArticles = async (
           day: "numeric",
         }),
         thumbnail,
-        description:
-          item.description.replace(/<[^>]+>/g, "").slice(0, 100) + "...",
+        description: item.description.replace(/<[^>]+>/g, ""),
       };
     });
 

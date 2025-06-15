@@ -64,8 +64,10 @@ html {
 
   /* Overrides the existing color system */
   --color-*: initial;
-  --color-surface: oklch(0.95 0.0103 81.8);
-  --color-background: oklch(0.98 0.0093 99.98);
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-surface: #eee8d5;
+  --color-background: #fdf6e3;
   --color-text: oklch(0% 0 0);
   --color-text-neutral: oklch(20.02% 0 0 / 65%);
 
@@ -115,7 +117,7 @@ html {
 
   /* First child of body */
   .wrapper {
-    @apply w-full px-[16px] sm:px-[32px] md:px-[160px] xl:px-[200px];
+    @apply w-full px-[16px] sm:px-[32px] md:px-[48px] xl:px-[80px];
   }
 
   .responsive-h1 {
@@ -135,7 +137,7 @@ html {
   }
 
   h2 {
-    @apply font-semibold;
+    @apply font-bold;
   }
 
   h3 {
@@ -153,7 +155,7 @@ html {
   }
 
   .heading-4-bold {
-    @apply font-bold text-[19px] sm:text-[27px];
+    @apply font-semibold text-[19px] sm:text-[27px];
   }
 
   .heading-5-light {
@@ -165,7 +167,7 @@ html {
   }
 
   .heading-5-bold {
-    @apply font-bold text-[18px] sm:text-[23px];
+    @apply font-semibold text-[18px] sm:text-[23px];
   }
 
   .body-light {

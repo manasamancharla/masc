@@ -8,11 +8,7 @@ import { Medium } from "./icons/Medium";
 const Footer = () => {
   return (
     <>
-      <footer
-        className={cn(
-          "relative mt-auto mb-2 w-full border-t-1 border-[#232B34]",
-        )}
-      >
+      <footer className={cn("mt-auto mb-2 w-full border-t-1 border-[#232B34]")}>
         <div className="wrapper">
           <div className="w-full flex items-center justify-between p-2">
             <p className="footnote-regular text-text-neutral">

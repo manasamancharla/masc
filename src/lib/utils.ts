@@ -33,10 +33,3 @@ export const getTimeSince = (dateString: string): string => {
   const diffInDays = Math.floor(diffInHours / 24);
   return `${diffInDays} day${diffInDays === 1 ? "" : "s"} ago`;
 };
-
-export const truncateText = (text: string, charLimit: number): string => {
-  if (typeof text === "string" && text.length > charLimit) {
-    return text.slice(0, charLimit) + "...";
-  }
-  return text;
-};

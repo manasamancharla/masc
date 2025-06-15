@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 
-import { ArrowRight } from "../../../components/icons/ArrowRight";
-import { fetchLatestMediumArticles, Article } from "../../../api";
+import { ArrowRight } from "@/components/icons/ArrowRight";
+import { fetchLatestMediumArticles, Article } from "@/api";
+import { cn } from "@/lib/utils";
 
 const Insights = () => {
   const [articles, setArticles] = useState<Article[]>([]);
@@ -21,80 +22,91 @@ const Insights = () => {
 
   return (
     <>
-      <section className="flex min-h-screen w-full flex-col gap-3 pb-32 pt-24 justify-center">
-        <h2 className="responsive-h2 max-w-[593px] self-stretch text-text">
-          Sharing My Experiences and Insights
-        </h2>
-        <p className="body-bold text-text-neutral max-w-[593px] self-stretch">
-          Learning never stops, and neither does building. I share my progress
-          as I explore new technologies and projects
-        </p>
+      <section className="w-full min-h-screen flex flex-col items-center justify-center">
+        <div className="w-full max-w-[1040px] flex flex-col gap-6 pb-32 pt-24">
+          <h2 className="responsive-h2 text-text max-w-[593px] self-stretch">
+            Sharing My Experiences and Insights
+          </h2>
+          <p className="body-bold text-text-neutral max-w-[593px] self-stretch">
+            Learning never stops, and neither does building. I share my progress
+            as I explore new technologies and projects
+          </p>
 
-        {articles.length > 0 && (
-          <div className="grid grid-cols-2 gap-4 h-[470px] px-2 py-4">
-            <div className="flex flex-col items-start gap-2 flex-1">
-              {articles[0].thumbnail && (
-                <img
-                  src={articles[0].thumbnail}
-                  alt="blog-img"
-                  className="self-stretch h-[256px]"
-                />
-              )}
-              <p className="subtitle-bold text-text-neutral">
-                {articles[0].pubDate}
-              </p>
-              <h4 className="heading-4-bold text-text self-stretch">
-                {articles[0].title}
-              </h4>
-              <p className="body-regular text-text-neutral self-stretch">
-                {articles[0].description}
-              </p>
-              <a
-                className="flex justify-center items-center gap-2"
-                href={articles[0].link}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <p className="subtitle-bold text-text">Read more</p>
-                <ArrowRight className="w-4 h-4 text-text" />
-              </a>
-            </div>
-
-            <div className="grid grid-rows-2 gap-4">
-              {articles.slice(1).map((article, index) => (
-                <div
-                  key={index}
-                  className="flex items-start self-stretch gap-3 flex-1"
-                >
-                  {article.thumbnail && (
+          {articles.length > 0 && (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 min-h-[470px]">
+              {/* Featured (Left) */}
+              <div className="flex flex-col gap-3 flex-1">
+                <div className="rounded-lg overflow-hidden">
+                  {articles[0].thumbnail && (
                     <img
-                      src={article.thumbnail}
-                      alt="Article Thumbnail"
-                      className="self-stretch h-full w-[227px]"
+                      src={articles[0].thumbnail}
+                      alt="blog-img"
+                      className="w-full h-[260px] object-cover object-center transition-all duration-200"
                     />
                   )}
-                  <div className="flex flex-col items-start self-stretch gap-2 flex-1">
-                    <p className="subtitle-bold text-text-neutral">
-                      {article.pubDate}
-                    </p>
-                    <h5 className="heading-5-bold text-text self-stretch">
-                      {article.title}
-                    </h5>
-                    <a
-                      href={article.link}
-                      className="flex justify-center items-center gap-2"
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      <p className="subtitle-bold text-text">Read more</p>
-                      <ArrowRight className="w-4 h-4 text-text" />
-                    </a>
-                  </div>
                 </div>
-              ))}
+                <p className="subtitle-bold text-text-neutral">
+                  {articles[0].pubDate}
+                </p>
+                <h5 className="heading-5-bold text-text self-stretch">
+                  {articles[0].title}
+                </h5>
+                <p className="body-regular text-text-neutral self-stretch max-md:hidden line-clamp-3">
+                  {articles[0].description}
+                </p>
+
+                <a
+                  className="flex items-center gap-2 hover:underline mt-auto"
+                  href={articles[0].link}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <p className="subtitle-bold text-text">Read more</p>
+                  <ArrowRight className="w-4 h-4 text-text" />
+                </a>
+              </div>
+
+              {/* Side Articles (Right) */}
+              <div className="flex flex-col gap-6">
+                {articles.slice(1).map((article, index) => (
+                  <div
+                    key={index}
+                    className="flex flex-col md:flex-col items-start gap-3 rounded-lg overflow-hidden"
+                  >
+                    {article.thumbnail && (
+                      <img
+                        src={article.thumbnail}
+                        alt="Article Thumbnail"
+                        className="w-full h-[150px] object-cover"
+                      />
+                    )}
+                    <div className="flex flex-col justify-between flex-1 gap-3 md:gap-0">
+                      <p className="subtitle-bold text-text-neutral">
+                        {article.pubDate}
+                      </p>
+                      <h5
+                        className={cn(
+                          "heading-5-bold text-text self-stretch sm:text-[18px]",
+                        )}
+                      >
+                        {article.title}
+                      </h5>
+                      <a
+                        href={article.link}
+                        className="flex items-center gap-2 hover:underline md:mt-2"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <p className="subtitle-bold text-text">Read more</p>
+                        <ArrowRight className="w-4 h-4 text-text" />
+                      </a>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </section>
     </>
   );
