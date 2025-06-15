@@ -117,7 +117,7 @@ html {
 
   /* First child of body */
   .wrapper {
-    @apply w-full px-[16px] sm:px-[32px] md:px-[160px] xl:px-[200px];
+    @apply w-full px-[16px] sm:px-[32px] md:px-[48px] xl:px-[80px];
   }
 
   .responsive-h1 {
@@ -137,7 +137,7 @@ html {
   }
 
   h2 {
-    @apply font-semibold;
+    @apply font-bold;
   }
 
   h3 {
@@ -155,7 +155,7 @@ html {
   }
 
   .heading-4-bold {
-    @apply font-bold text-[19px] sm:text-[27px];
+    @apply font-semibold text-[19px] sm:text-[27px];
   }
 
   .heading-5-light {
@@ -167,7 +167,7 @@ html {
   }
 
   .heading-5-bold {
-    @apply font-bold text-[18px] sm:text-[23px];
+    @apply font-semibold text-[18px] sm:text-[23px];
   }
 
   .body-light {

@@ -2,8 +2,8 @@ import BentoTechStack from "./BentoTechStack";
 import BentoCard from "./BentoCard";
 import BentoBadge from "./BentoBadge";
 
-import { X } from "../../../components/icons/X";
-import { Leetcode } from "../../../components/icons/Leetcode";
+import { X } from "@/components/icons/X";
+import { Leetcode } from "@/components/icons/Leetcode";
 import { Medium } from "../../../components/icons/Medium";
 import { TechStack } from "../../../components/icons/TechStack";
 import { About } from "../../../components/icons/About";
@@ -21,7 +21,7 @@ import {
   GithubContributions,
   getLatestPublicCommit,
   LatestPublicCommit,
-} from "../../../api";
+} from "@/api";
 
 const GITHUB_PUBLIC_TOKEN = import.meta.env.VITE_GITHUB_PUBLIC_TOKEN;
 const GITHUB_USERNAME = import.meta.env.VITE_GITHUB_USERNAME;
@@ -44,9 +44,9 @@ const BentoGrid = () => {
   return (
     <>
       <section
-        className="w-full h-[792px] max-w-[1040px]
-    max-md:flex max-md:flex-col max-md:gap-4
-    md:grid md:grid-cols-[repeat(36,_minmax(0,_1fr))] md:auto-rows-[minmax(0,1fr)] md:gap-4"
+        className="w-full max-w-[1040px] lg:h-[792px] 
+    max-lg:flex max-lg:flex-col max-lg:gap-4
+    lg:grid lg:grid-cols-[repeat(36,_minmax(0,_1fr))] lg:auto-rows-[minmax(0,1fr)] lg:gap-4"
       >
         <BentoCard gridStyles="md:col-start-1 md:col-end-20 md:row-start-1 md:row-end-2 max-md:w-full ">
           <BentoBadge icon={TechStack} label="Tech Stack" />
@@ -102,7 +102,7 @@ const BentoGrid = () => {
               <p className="body-bold text-text-neutral">{repoData?.branch}</p>
             </div>
 
-            <div className="flex gap-2 items-center">
+            <div className="flex gap-2 items-center line-clamp-1 text-nowrap">
               <Commit className="w-3 h-3 min-w-[12px] min-h-[12px] text-text-neutral" />
               <p className="body-bold text-text-neutral">
                 {repoData?.commitMessage}
