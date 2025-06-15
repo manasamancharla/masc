@@ -59,11 +59,12 @@ const Navbar = () => {
     <>
       <nav
         ref={navRef}
-        className={`fixed bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center justify-center z-50 transition-transform duration-200 ${
-          isHidden ? "translate-y-[200%]" : "translate-y-0"
-        }`}
+        className={cn(
+          "fixed bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center justify-center z-50 transition-transform duration-200",
+          isHidden ? "translate-y-[200%]" : "translate-y-0",
+        )}
       >
-        <Dock className="text-text">
+        <Dock className="text-text" isDarkMode={isDarkMode}>
           {LINKS.navbar.map((item) => (
             <DockIcon key={item.label} label={item.label} className="relative">
               <Link

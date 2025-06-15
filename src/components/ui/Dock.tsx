@@ -19,6 +19,7 @@ export interface DockProps extends VariantProps<typeof dockVariants> {
   iconMagnification?: number;
   iconDistance?: number;
   children: React.ReactNode;
+  isDarkMode?: boolean;
   ref?: Ref<HTMLInputElement>;
 }
 
@@ -27,7 +28,7 @@ const DEFAULT_MAGNIFICATION = 60;
 const DEFAULT_DISTANCE = 140;
 
 const dockVariants = cva(
-  "supports-backdrop-blur:bg-white/10 supports-backdrop-blur:dark:bg-black/10 bg-black/75 flex h-[58px] w-max items-center border-[#232B34] justify-center gap-2 rounded-2xl border p-2 backdrop-blur-lg",
+  "flex h-[58px] w-max items-center justify-center gap-2 rounded-2xl border p-2 backdrop-blur-lg",
 );
 
 // supports-backdrop-blur:bg-black/10  bg-black/75
@@ -38,6 +39,7 @@ const Dock = ({
   iconSize = DEFAULT_SIZE,
   iconMagnification = DEFAULT_MAGNIFICATION,
   iconDistance = DEFAULT_DISTANCE,
+  isDarkMode,
   ref,
   ...props
 }: DockProps) => {
@@ -67,7 +69,13 @@ const Dock = ({
       onMouseMove={(e) => mouseX.set(e.pageX)}
       onMouseLeave={() => mouseX.set(Infinity)}
       {...props}
-      className={cn(dockVariants(), className)}
+      className={cn(
+        dockVariants(),
+        isDarkMode
+          ? "supports-backdrop-blur:bg-black/10 bg-black/75 border-[#232B34]"
+          : "supports-backdrop-blur:bg-background/10 bg-background/75 border-[#93a1a1]",
+        className,
+      )}
     >
       {renderChildren()}
     </motion.div>
