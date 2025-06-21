@@ -3,10 +3,12 @@ import { Button } from "../../../components/ui/Button";
 import { Linkedin } from "../../../components/icons/Linkedin";
 import { Mail } from "../../../components/icons/Mail";
 
+import SectionTransition from "@/components/ui/SectionTransition";
+
 const Contact = () => {
   return (
     <>
-      <section className="flex min-h-screen w-full flex-col gap-3 pb-32 pt-24 justify-center items-center">
+      <SectionTransition className="flex min-h-screen w-full flex-col gap-3 pb-32 pt-24 justify-center items-center">
         <div className="flex p-6 items-center justify-center gap-2 rounded-[100px] border-2 border-text">
           <Talk />
         </div>
@@ -21,7 +23,7 @@ const Contact = () => {
             <Mail />
           </Button>
         </div>
-      </section>
+      </SectionTransition>
     </>
   );
 };

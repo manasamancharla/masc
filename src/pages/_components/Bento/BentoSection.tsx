@@ -1,12 +1,14 @@
 import BentoGrid from "./BentroGrid";
 import "./Bento.css";
 
+import SectionTransition from "@/components/ui/SectionTransition";
+
 const BentoSection = () => {
   return (
     <>
-      <section className="flex min-h-screen w-full flex-col pb-32 pt-24 justify-center items-center">
+      <SectionTransition className="flex min-h-screen w-full flex-col pb-32 pt-24 justify-center items-center">
         <BentoGrid />
-      </section>
+      </SectionTransition>
     </>
   );
 };
