@@ -1,7 +1,8 @@
-import { ArrowRight } from "../../../components/icons/ArrowRight";
+import { ArrowRight } from "@/components/icons/ArrowRight";
 
-import ProxyServer from "../../../assets/ProxyServer.png";
-import TodoList from "../../../assets/TodoList.png";
+import ProxyServer from "@/assets/ProxyServer.png";
+import TodoList from "@/assets/TodoList.png";
+import SectionTransition from "@/components/ui/SectionTransition";
 
 const projects = [
   {
@@ -24,7 +25,7 @@ const projects = [
 const Projects = () => {
   return (
     <>
-      <section className="w-full min-h-screen flex flex-col items-center justify-center">
+      <SectionTransition className="w-full min-h-screen flex flex-col items-center justify-center">
         <div className="w-full max-w-[1040px] flex flex-col gap-6 pb-32 pt-24">
           <h2 className="responsive-h2 max-w-[593px] self-stretch text-text">
             Projects in My Learning Journey.
@@ -67,7 +68,7 @@ const Projects = () => {
             ))}
           </div>
         </div>
-      </section>
+      </SectionTransition>
     </>
   );
 };

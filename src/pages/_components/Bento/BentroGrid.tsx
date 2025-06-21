@@ -43,7 +43,7 @@ const BentoGrid = () => {
 
   return (
     <>
-      <section
+      <div
         className="w-full max-w-[1040px] lg:h-[792px] 
     max-lg:flex max-lg:flex-col max-lg:gap-4
     lg:grid lg:grid-cols-[repeat(36,_minmax(0,_1fr))] lg:auto-rows-[minmax(0,1fr)] lg:gap-4"
@@ -139,7 +139,7 @@ const BentoGrid = () => {
             />
           )}
         </div>
-      </section>
+      </div>
     </>
   );
 };

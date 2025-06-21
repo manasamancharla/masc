@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { ArrowRight } from "@/components/icons/ArrowRight";
 import { fetchLatestMediumArticles, Article } from "@/api";
 import { cn } from "@/lib/utils";
+import SectionTransition from "@/components/ui/SectionTransition";
 
 const Insights = () => {
   const [articles, setArticles] = useState<Article[]>([]);
@@ -22,7 +23,7 @@ const Insights = () => {
 
   return (
     <>
-      <section className="w-full min-h-screen flex flex-col items-center justify-center">
+      <SectionTransition className="w-full min-h-screen flex flex-col items-center justify-center">
         <div className="w-full max-w-[1040px] flex flex-col gap-6 pb-32 pt-24">
           <h2 className="responsive-h2 text-text max-w-[593px] self-stretch">
             Sharing My Experiences and Insights
@@ -107,7 +108,7 @@ const Insights = () => {
             </div>
           )}
         </div>
-      </section>
+      </SectionTransition>
     </>
   );
 };
