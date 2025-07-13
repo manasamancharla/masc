@@ -5,6 +5,7 @@ import Insights from "./_components/Insights/Insights";
 import Projects from "./_components/Projects/Projects";
 import Contact from "./_components/Contact/Contact";
 import PageTransition from "@/components/ui/PageTransition";
+import Chatbot from "@/components/Chatbot";
 
 const Intro = () => {
   return (
@@ -21,6 +22,7 @@ const Intro = () => {
           <Insights />
           <Projects />
           <Contact />
+          <Chatbot />
         </main>
       </PageTransition>
     </>
