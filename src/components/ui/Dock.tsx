@@ -10,6 +10,7 @@ import {
 } from "motion/react";
 import React, { PropsWithChildren, useRef, useState } from "react";
 import type { Ref } from "react";
+import { useIsDarkTheme } from "@/hooks/useTheme";
 
 import { cn } from "../../lib/utils";
 
@@ -30,8 +31,6 @@ const DEFAULT_DISTANCE = 140;
 const dockVariants = cva(
   "flex h-[58px] w-max items-center justify-center gap-2 rounded-2xl border p-2 backdrop-blur-lg",
 );
-
-// supports-backdrop-blur:bg-black/10  bg-black/75
 
 const Dock = ({
   className,
@@ -150,6 +149,8 @@ const DockIcon = ({
     };
   };
 
+  const isDarkMode = useIsDarkTheme();
+
   return (
     <motion.div
       ref={ref}
@@ -180,7 +181,13 @@ const DockIcon = ({
               transition={{
                 duration: 0.2,
               }}
-              className="absolute text-xs left-1/2 -translate-x-1/2 -top-9 px-2 py-0.5 whitespace-pre w-fit border-1 rounded-md border-[#232B34]"
+              className={cn(
+                (className =
+                  "absolute text-xs left-1/2 -translate-x-1/2 -top-9 px-2 py-0.5 whitespace-pre w-fit border-1 rounded-md"),
+                isDarkMode
+                  ? "supports-backdrop-blur:bg-black/10 bg-black/75 border-[#232B34]"
+                  : "supports-backdrop-blur:bg-background/10 bg-background/75 border-[#93a1a1]",
+              )}
             >
               {label}
             </motion.div>
