@@ -75,12 +75,17 @@ const Navbar = () => {
                 <item.icon className="w-full h-full" />
               </Link>
               {location.pathname === item.href && (
-                <div className="absolute -bottom-0.5 left-1/2 size-1 rounded-full bg-text"></div>
+                <div className="absolute -bottom-0.5 left-1/2 size-1 rounded-full bg-accent"></div>
               )}
             </DockIcon>
           ))}
 
-          <div className={`border-l border-[#232B34] h-full`} />
+          <div
+            className={cn(
+              `border-l  h-full`,
+              isDarkMode ? " border-[#232B34]" : " border-[#93a1a1]",
+            )}
+          />
 
           {THEME.navbar.map((item) => (
             <DockIcon key={item.label}>
