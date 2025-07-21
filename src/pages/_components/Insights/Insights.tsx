@@ -36,13 +36,18 @@ const Insights = () => {
           {articles.length > 0 && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 min-h-[470px]">
               {/* Featured (Left) */}
-              <div className="flex flex-col gap-3 flex-1">
+              <a
+                className="flex flex-col gap-3 flex-1 group"
+                href={articles[0].link}
+                target="_blank"
+                rel="noreferrer"
+              >
                 <div className="rounded-lg overflow-hidden">
                   {articles[0].thumbnail && (
                     <img
                       src={articles[0].thumbnail}
                       alt="blog-img"
-                      className="w-full h-[260px] object-cover object-center transition-all duration-200"
+                      className="w-full h-[260px] object-cover transition-transform duration-700 group-hover:scale-105"
                     />
                   )}
                 </div>
@@ -56,29 +61,31 @@ const Insights = () => {
                   {articles[0].description}
                 </p>
 
-                <a
-                  className="flex items-center gap-2 hover:underline mt-auto"
-                  href={articles[0].link}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <p className="subtitle-bold text-text">Read more</p>
-                  <ArrowRight className="w-4 h-4 text-text" />
-                </a>
-              </div>
+                <span className="flex items-center gap-2 md:mt-2 md:mb-2 text-text">
+                  <p className="link-hover-animation group-hover:link-hovered-animation subtitle-bold text-text">
+                    Read more
+                  </p>
+                  <ArrowRight className="w-4 h-4 text-text transition-transform duration-300 group-hover:translate-x-1" />
+                </span>
+              </a>
 
               {/* Side Articles (Right) */}
               <div className="flex flex-col gap-6">
                 {articles.slice(1).map((article, index) => (
-                  <div
+                  <a
                     key={index}
-                    className="flex flex-col md:flex-col items-start gap-3 rounded-lg overflow-hidden"
+                    className={cn(
+                      "flex flex-col md:flex-col items-start gap-3 rounded-lg overflow-hidden group",
+                    )}
+                    href={article.link}
+                    target="_blank"
+                    rel="noreferrer"
                   >
                     {article.thumbnail && (
                       <img
                         src={article.thumbnail}
                         alt="Article Thumbnail"
-                        className="w-full h-[150px] object-cover"
+                        className="w-full h-[150px] object-cover transition-transform duration-700 group-hover:scale-105"
                       />
                     )}
                     <div className="flex flex-col justify-between flex-1 gap-3 md:gap-0">
@@ -92,17 +99,14 @@ const Insights = () => {
                       >
                         {article.title}
                       </h5>
-                      <a
-                        href={article.link}
-                        className="flex items-center gap-2 hover:underline md:mt-2"
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        <p className="subtitle-bold text-text">Read more</p>
-                        <ArrowRight className="w-4 h-4 text-text" />
-                      </a>
+                      <span className="flex items-center gap-2 md:mt-2 md:mb-2 text-text">
+                        <p className="link-hover-animation group-hover:link-hovered-animation subtitle-bold text-text">
+                          Read more
+                        </p>
+                        <ArrowRight className="w-4 h-4 text-text transition-transform duration-300 group-hover:translate-x-1" />
+                      </span>
                     </div>
-                  </div>
+                  </a>
                 ))}
               </div>
             </div>
