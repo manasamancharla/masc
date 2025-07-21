@@ -37,14 +37,17 @@ const Projects = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
             {projects.map((project, index) => (
-              <div
+              <a
                 key={index}
-                className="flex flex-col items-start overflow-hidden gap-2"
+                className="flex flex-col items-start overflow-hidden gap-2 group"
+                href={project.link}
+                target="_blank"
+                rel="noreferrer"
               >
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="self-stretch w-full h-60 object-cover rounded-lg"
+                  className="self-stretch w-full h-60 object-cover transition-transform duration-700 group-hover:scale-105 rounded-lg"
                 />
                 <p className="subtitle-bold text-text-neutral">
                   {project.year}
@@ -55,16 +58,13 @@ const Projects = () => {
                 <p className="body-regular text-text-neutral self-stretch">
                   {project.description}
                 </p>
-                <a
-                  className="flex justify-center items-center gap-2 hover:underline"
-                  href={project.link}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <p className="subtitle-bold text-text">Read more</p>
-                  <ArrowRight className="w-4 h-4 text-text" />
-                </a>
-              </div>
+                <span className="flex items-center gap-2 md:mt-2 md:mb-2 text-text">
+                  <p className="link-hover-animation group-hover:link-hovered-animation subtitle-bold text-text">
+                    Read more
+                  </p>
+                  <ArrowRight className="w-4 h-4 text-text transition-transform duration-300 group-hover:translate-x-1" />
+                </span>
+              </a>
             ))}
           </div>
         </div>

@@ -71,6 +71,7 @@ html {
   --color-text: oklch(0% 0 0);
   --color-text-neutral: oklch(20.02% 0 0 / 65%);
   --color-accent: #22c55e;
+  --color-dot-color: oklch(20.02% 0 0 / 65%);
 
   --color-cta-button-bg: #ffffff;
   --color-cta-button-hover: #f5f5f5;
@@ -107,6 +108,7 @@ html {
     --color-text: oklch(100% 0 0);
     --color-text-neutral: oklch(71.07% 0.0351 256.79 / 90%);
     --color-accent: #22c55e;
+    --color-dot-color: oklch(71.07% 0.0351 256.79 / 90%);
 
     --color-cta-button-bg: #0a0a0a;
     --color-cta-button-hover: #0e1218;
@@ -210,6 +212,31 @@ html {
 
   .footnote-bold {
     @apply font-medium text-[10px];
+  }
+
+  .link-hover-animation {
+    position: relative;
+  }
+
+  .link-hover-animation:before {
+    position: absolute;
+    content: "";
+    left: 0;
+    bottom: -5px;
+    height: 1.25px;
+    width: 0;
+    background-image: repeating-linear-gradient(
+      to right,
+      var(--color-dot-color, rgba(255, 255, 255, 0.75)),
+      var(--color-dot-color, rgba(255, 255, 255, 0.75)) 2px,
+      transparent 2px,
+      transparent 3px
+    );
+    transition: all 0.3s ease-in-out;
+  }
+
+  .group:hover .group-hover\:link-hovered-animation:before {
+    width: 100%;
   }
 }
 
