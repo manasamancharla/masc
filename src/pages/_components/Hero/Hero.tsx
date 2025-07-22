@@ -4,9 +4,20 @@ import { Button } from "../../../components/ui/Button";
 import { Github } from "../../../components/icons/Github";
 import { Linkedin } from "../../../components/icons/Linkedin";
 import { Mail } from "../../../components/icons/Mail";
-import { Resume } from "../../../components/icons/Resume";
+// import { Resume } from "../../../components/icons/Resume";
 
 import SectionTransition from "@/components/ui/SectionTransition";
+
+const links = [
+  { icon: Github, url: "https://github.com/manasamancharla", label: "GitHub" },
+  {
+    icon: Linkedin,
+    url: "https://www.linkedin.com/in/manas-amancharla/",
+    label: "LinkedIn",
+  },
+  { icon: Mail, url: "mailto:amancharlamanas@gmail.com", label: "Email" },
+  // { icon: Resume, url: "/resume.pdf", label: "Resume" },
+];
 
 const Hero = () => {
   return (
@@ -37,10 +48,22 @@ const Hero = () => {
           animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
           transition={{ duration: 0.6, delay: 0.7 }}
         >
-          {[Github, Linkedin, Mail, Resume].map((Icon, i) => (
-            <Button key={i} intent="cta">
-              <Icon />
-            </Button>
+          {links.map(({ icon: Icon, url, label }, i) => (
+            <a
+              key={i}
+              href={url}
+              target={
+                url.startsWith("http") || url.startsWith("mailto:")
+                  ? "_blank"
+                  : "_self"
+              }
+              rel="noreferrer"
+              aria-label={label}
+            >
+              <Button intent="cta" className="cursor-pointer">
+                <Icon />
+              </Button>
+            </a>
           ))}
         </motion.div>
       </SectionTransition>
