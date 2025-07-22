@@ -12,6 +12,7 @@ const linkButton = cva(
           "bg-cta-button-bg border-cta-button-border hover:bg-cta-button-hover w-[50px] h-[50px] p-2 md:w-[60px] md:h-[60px] md:p-3 xl:w-[70px] xl:h-[70px]",
         ],
         comingSoon: [""],
+        minimal: ["bg-transparent border-none w-full h-full"],
       },
       size: {
         small: [""],

@@ -1,5 +1,5 @@
 import { Talk } from "../../../components/icons/Talk";
-import { Button } from "../../../components/ui/Button";
+import { LinkButton } from "@/components/ui/LinkButton";
 import { Linkedin } from "../../../components/icons/Linkedin";
 import { Mail } from "../../../components/icons/Mail";
 
@@ -26,7 +26,7 @@ const Contact = () => {
         </h3>
         <div className="flex p-6 items-center justify-center py-2 gap-8">
           {links.map(({ icon: Icon, url, label }, i) => (
-            <a
+            <LinkButton
               key={i}
               href={url}
               target={
@@ -35,12 +35,12 @@ const Contact = () => {
                   : "_self"
               }
               rel="noreferrer"
-              aria-label={label}
+              ariaLabel={label}
+              intent="cta"
+              className="cursor-pointer"
             >
-              <Button intent="cta" className="cursor-pointer">
-                <Icon />
-              </Button>
-            </a>
+              <Icon />
+            </LinkButton>
           ))}
         </div>
       </SectionTransition>
