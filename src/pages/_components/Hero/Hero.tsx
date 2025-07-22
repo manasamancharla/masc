@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 
-import { Button } from "../../../components/ui/Button";
+import { LinkButton } from "@/components/ui/LinkButton";
 import { Github } from "../../../components/icons/Github";
 import { Linkedin } from "../../../components/icons/Linkedin";
 import { Mail } from "../../../components/icons/Mail";
@@ -49,7 +49,7 @@ const Hero = () => {
           transition={{ duration: 0.6, delay: 0.7 }}
         >
           {links.map(({ icon: Icon, url, label }, i) => (
-            <a
+            <LinkButton
               key={i}
               href={url}
               target={
@@ -58,12 +58,12 @@ const Hero = () => {
                   : "_self"
               }
               rel="noreferrer"
-              aria-label={label}
+              ariaLabel={label}
+              intent="cta"
+              className="cursor-pointer"
             >
-              <Button intent="cta" className="cursor-pointer">
-                <Icon />
-              </Button>
-            </a>
+              <Icon />
+            </LinkButton>
           ))}
         </motion.div>
       </SectionTransition>
