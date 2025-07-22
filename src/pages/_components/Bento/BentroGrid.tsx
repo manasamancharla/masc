@@ -11,6 +11,7 @@ import { Repository } from "../../../components/icons/Repository";
 import { Commit } from "../../../components/icons/Commit";
 import { Branch } from "../../../components/icons/Branch";
 import { ArrowRight } from "../../../components/icons/ArrowRight";
+import { LinkButton } from "@/components/ui/LinkButton";
 
 import BentoGithubActivity from "./BentoGithubActivity";
 
@@ -25,6 +26,24 @@ import {
 
 const GITHUB_PUBLIC_TOKEN = import.meta.env.VITE_GITHUB_PUBLIC_TOKEN;
 const GITHUB_USERNAME = import.meta.env.VITE_GITHUB_USERNAME;
+
+const socialLinks = [
+  {
+    icon: X,
+    href: "https://x.com/ManasAmancharla",
+    label: "X",
+  },
+  {
+    icon: Leetcode,
+    href: "https://leetcode.com/u/manasamancharla/",
+    label: "Leetcode",
+  },
+  {
+    icon: Medium,
+    href: "https://medium.com/@manasamancharla11",
+    label: "Medium",
+  },
+];
 
 const BentoGrid = () => {
   const [contributionData, setContributionData] =
@@ -77,15 +96,23 @@ const BentoGrid = () => {
             </p>
           </BentoCard>
           <div className="w-full grid grid-cols-3 gap-5 flex-1">
-            <BentoCard className="h-full w-full items-center justify-center">
-              <X />
-            </BentoCard>
-            <BentoCard className="h-full w-full items-center justify-center">
-              <Leetcode />
-            </BentoCard>
-            <BentoCard className="h-full w-full items-center justify-center">
-              <Medium />
-            </BentoCard>
+            {socialLinks.map(({ icon: Icon, href, label }, i) => (
+              <BentoCard
+                key={i}
+                className="group flex h-full w-full items-center justify-center p-0"
+              >
+                <LinkButton
+                  href={href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={label}
+                  intent="minimal"
+                  className="cursor-pointer"
+                >
+                  <Icon className="transition-none duration-300 group-hover:text-accent" />
+                </LinkButton>
+              </BentoCard>
+            ))}
           </div>
         </BentoCard>
 
