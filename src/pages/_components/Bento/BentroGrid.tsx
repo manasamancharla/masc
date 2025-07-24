@@ -122,7 +122,16 @@ const BentoGrid = () => {
         >
           <BentoBadge icon={Repository} label="Last pushed" />
 
-          <p className="heading-5-bold text-text p-2">{repoData?.repoName}</p>
+          {/* <p className="heading-5-bold text-text p-2">{repoData?.repoName}</p> */}
+          <a
+            href={repoData?.repoUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="heading-5-bold text-text p-2 hover:text-accent"
+          >
+            {repoData?.repoName}
+          </a>
+
           <div className="flex flex-col gap-4 text-text p-2 w-full">
             <div className="flex gap-2 items-center">
               <Branch className="w-3 h-3 min-w-[12px] min-h-[12px] text-text-neutral" />
@@ -147,10 +156,15 @@ const BentoGrid = () => {
             </div>
           </div>
           <div className="flex-1 w-full flex items-center justify-center">
-            <button className="border border-solid body-bold rounded-lg border-text-neutral flex items-center gap-2 py-2 px-4 ">
+            <a
+              href={repoData?.commitUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="border border-solid body-bold rounded-lg border-text-neutral flex items-center gap-2 py-2 px-4 hover:text-accent hover:border-accent"
+            >
               View
               <ArrowRight className="w-6 h-6" />
-            </button>
+            </a>
           </div>
         </BentoCard>
 
