@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router";
+import { Routes, Route, useLocation } from "react-router";
 import { AnimatePresence } from "motion/react";
 
 import Intro from "./pages/Intro";
@@ -7,16 +7,18 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
 const App = () => {
+  const location = useLocation();
+
   return (
     <>
+      <Navbar />
       <AnimatePresence mode="wait">
-        <Routes>
+        <Routes location={location} key={location.key}>
           <Route index element={<Intro />} />
           <Route path="/blog" element={<Blog />} />
         </Routes>
-        <Navbar />
-        <Footer />
       </AnimatePresence>
+      <Footer />
     </>
   );
 };
