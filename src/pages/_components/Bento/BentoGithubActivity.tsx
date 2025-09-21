@@ -36,7 +36,7 @@ const renderRect =
 const weeks = 28;
 const rectSize = 20;
 const space = 5;
-const mapWidth = weeks * (rectSize + space) - space;
+const mapWidth = weeks * (rectSize + space) - space + 10;
 const mapHeight = 8 * (rectSize + space) - space;
 
 const BentoGithubActivity = (props: GithubContributions) => {
