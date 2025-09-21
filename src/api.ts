@@ -80,7 +80,7 @@ export const getGithubContributions = async (
       contributions: calendar.weeks.flatMap((week: Week) =>
         week.contributionDays.map((day: Day) => ({
           count: day.contributionCount,
-          date: day.date.replace(/-/g, "/"),
+          date: day.date, // Keep the original YYYY-MM-DD format
         })),
       ),
     };

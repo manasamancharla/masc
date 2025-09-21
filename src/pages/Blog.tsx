@@ -17,7 +17,7 @@ const Blog = () => {
                 animate={{ opacity: 1, filter: "blur(0px)" }}
                 transition={{ duration: 0.6, delay: 0.3 }}
               >
-                This is Blog
+                Blog under Construction
               </motion.h1>
             </section>
           </SectionTransition>
