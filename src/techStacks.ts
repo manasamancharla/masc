@@ -6,6 +6,9 @@ import { Aws } from "./components/icons/Aws";
 import { Express } from "./components/icons/Express";
 import { Cpp } from "./components/icons/Cpp";
 import { Prisma } from "./components/icons/Prisma";
+import { Terraform } from "./components/icons/Terraform";
+import { Bash } from "./components/icons/Bash";
+import { Kubernetes } from "./components/icons/Kubernetes";
 import type { JSX, SVGProps } from "react";
 
 type TechStack = {
@@ -63,6 +66,24 @@ const techStacks: TechStack[] = [
     icon: Prisma,
     description:
       "Prisma is a modern TypeScript ORM that simplifies database access and boosts productivity with type-safe queries.",
+  },
+  {
+    name: "Terraform",
+    icon: Terraform,
+    description:
+      "Terraform is an infrastructure as code tool that allows you to build, change, and version infrastructure safely and efficiently.",
+  },
+  {
+    name: "Bash",
+    icon: Bash,
+    description:
+      "Bash is a Unix shell and command language that is used to execute commands in a terminal.",
+  },
+  {
+    name: "Kubernetes",
+    icon: Kubernetes,
+    description:
+      "Kubernetes is an open-source container orchestration platform that automates the deployment, scaling, and management of containerized applications.",
   },
 ];
 
