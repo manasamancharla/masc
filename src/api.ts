@@ -24,24 +24,6 @@ export type LatestPublicCommit = {
   timeSincePush: string;
 };
 
-type GitHubCommit = {
-  sha: string;
-  message: string;
-  url: string;
-};
-
-type GitHubPushEvent = {
-  type: "PushEvent";
-  repo: {
-    name: string;
-  };
-  payload: {
-    ref: string;
-    commits: GitHubCommit[];
-  };
-  created_at: string;
-};
-
 export type Article = {
   title: string;
   link: string;
@@ -95,7 +77,7 @@ export const getLatestPublicCommit = async (
   token: string,
 ): Promise<LatestPublicCommit | null> => {
   try {
-    const res = await fetch(
+    const eventsRes = await fetch(
       `https://api.github.com/users/${username}/events/public`,
       {
         headers: {
@@ -105,32 +87,45 @@ export const getLatestPublicCommit = async (
       },
     );
 
-    if (!res.ok) throw new Error("GitHub API error");
+    if (!eventsRes.ok) throw new Error("Events API error");
 
-    const events = await res.json();
+    const events = await eventsRes.json();
 
-    const pushEvent = (events as GitHubPushEvent[]).find(
-      (event) => event.type === "PushEvent",
+    const pushEvent = events.find(
+      (event: any) => event.type === "PushEvent" && event.payload?.head,
     );
-    if (!pushEvent || pushEvent.payload.commits.length === 0) return null;
 
-    const commit = pushEvent.payload.commits[0];
+    if (!pushEvent) return null;
+
+    const [owner, repo] = pushEvent.repo.name.split("/");
     const branch = pushEvent.payload.ref.replace("refs/heads/", "");
+    const sha = pushEvent.payload.head;
+
+    const commitRes = await fetch(
+      `https://api.github.com/repos/${owner}/${repo}/commits/${sha}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          Accept: "application/vnd.github+json",
+        },
+      },
+    );
+
+    if (!commitRes.ok) throw new Error("Commit API error");
+
+    const commitData = await commitRes.json();
 
     return {
-      repoName: pushEvent.repo.name.split("/")[1],
-      repoUrl: `https://github.com/${pushEvent.repo.name}`,
+      repoName: repo,
+      repoUrl: `https://github.com/${owner}/${repo}`,
       branch,
-      commitSha: commit.sha.slice(0, 7),
-      commitMessage: commit.message,
-      commitUrl: commit.url
-        .replace("api.", "")
-        .replace("repos/", "")
-        .replace("commits", "commit"),
+      commitSha: sha.slice(0, 7),
+      commitMessage: commitData.commit.message,
+      commitUrl: `https://github.com/${owner}/${repo}/commit/${sha}`,
       timeSincePush: getTimeSince(pushEvent.created_at),
     };
   } catch (error) {
-    // console.error("Failed to fetch latest public commit:", error);
+    console.error("Failed to fetch latest public commit:", error);
     return null;
   }
 };
