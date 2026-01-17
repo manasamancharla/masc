@@ -1,26 +1,16 @@
-// import RayLight from "./components/RayLight/RayLight";
+import RayLight from "@/components/RayLight/RayLight";
 import PageTransition from "@/components/ui/PageTransition";
-import SectionTransition from "@/components/ui/SectionTransition";
-import { motion } from "motion/react";
+import BlogContent from "./_components/BlogContent/BlogContent";
 
 const Blog = () => {
   return (
     <>
-      {/* <RayLight type="primary" /> */}
       <PageTransition>
+        <div className="absolute -z-10 h-screen w-screen max-w-full overflow-hidden min-[2048px]:max-w-[2048px]">
+          <RayLight type="primary" className="left-[550px] -top-[100px]" />
+        </div>
         <main className="wrapper">
-          <SectionTransition>
-            <section className="flex h-screen flex-col items-center justify-center">
-              <motion.h1
-                className="responsive-h1"
-                initial={{ opacity: 0, filter: "blur(4px)" }}
-                animate={{ opacity: 1, filter: "blur(0px)" }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-              >
-                Blog under Construction
-              </motion.h1>
-            </section>
-          </SectionTransition>
+          <BlogContent />
         </main>
       </PageTransition>
     </>

@@ -57,7 +57,7 @@ const Insights = () => {
                 <h5 className="heading-5-bold text-text self-stretch">
                   {articles[0].title}
                 </h5>
-                <p className="body-regular text-text-neutral self-stretch max-md:hidden line-clamp-3">
+                <p className="body-regular text-text-neutral self-stretch max-md:hidden line-clamp-3 leading-tight">
                   {articles[0].description}
                 </p>
 

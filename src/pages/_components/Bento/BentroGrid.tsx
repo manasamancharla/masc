@@ -99,7 +99,7 @@ const BentoGrid = () => {
             {socialLinks.map(({ icon: Icon, href, label }, i) => (
               <BentoCard
                 key={i}
-                className="group flex h-full w-full items-center justify-center p-0"
+                className="group flex h-full w-full items-center justify-center p-4 lgp-0"
               >
                 <LinkButton
                   href={href}
@@ -109,7 +109,7 @@ const BentoGrid = () => {
                   intent="minimal"
                   className="cursor-pointer"
                 >
-                  <Icon className="transition-none duration-300 group-hover:text-accent" />
+                  <Icon className="transition-none duration-300 group-hover:text-accent h-8 w-8 md:h-10 md:w-10" />
                 </LinkButton>
               </BentoCard>
             ))}
