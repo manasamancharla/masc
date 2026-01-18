@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import {
   BlogLayoutToggle,
   type BlogLayout,
@@ -7,56 +7,36 @@ import { GridLayout } from "@/pages/_components/BlogContent/GridLayout";
 import { ListLayout } from "@/pages/_components/BlogContent/ListLayout";
 import SectionTransition from "@/components/ui/SectionTransition";
 import { motion } from "motion/react";
+import {
+  useSortedBlogPosts,
+  formatDate,
+  estimateReadingTime,
+} from "@/lib/blog";
 
-const blogPosts = [
-  {
-    id: "modern-web-development",
-    title: "The Future of Modern Web Development",
-    excerpt:
-      "Exploring the latest trends and technologies shaping the future of web development, from AI integration to edge computing.",
-    date: "Dec 15, 2024",
-    readTime: "8 min read",
-    category: "Technology",
+// Transform MDX posts to match the expected blog post format
+function transformMdxPostsToDisplayFormat(mdxPosts: any[]) {
+  return mdxPosts.map((post) => ({
+    id: post.slug,
+    title: post.frontmatter.title,
+    excerpt: post.frontmatter.description,
+    date: formatDate(post.frontmatter.date),
+    readTime: "5 min read", // Placeholder - can be enhanced with actual text analysis
+    category: post.frontmatter.tags[0] || "General",
     imageUrl:
-      "https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?w=800&h=400&fit=crop",
-  },
-  {
-    id: "design-systems",
-    title: "Building Scalable Design Systems",
-    excerpt:
-      "A comprehensive guide to creating and maintaining design systems that grow with your product and team.",
-    date: "Dec 12, 2024",
-    readTime: "12 min read",
-    category: "Design",
-    imageUrl:
-      "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=400&fit=crop",
-  },
-  {
-    id: "user-experience",
-    title: "Psychology of User Experience",
-    excerpt:
-      "Understanding the psychological principles that drive user behavior and how to apply them in your designs.",
-    date: "Dec 8, 2024",
-    readTime: "10 min read",
-    category: "UX/UI",
-    imageUrl:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=400&fit=crop",
-  },
-  {
-    id: "performance-optimization",
-    title: "Advanced Performance Optimization",
-    excerpt:
-      "Deep dive into techniques for optimizing web application performance, from code splitting to caching strategies.",
-    date: "Dec 5, 2024",
-    readTime: "15 min read",
-    category: "Performance",
-    imageUrl:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop",
-  },
-];
+      "https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?w=800&h=400&fit=crop", // Placeholder image
+    slug: post.slug,
+  }));
+}
 
 export default function BlogContent() {
   const [currentLayout, setCurrentLayout] = useState<BlogLayout>("grid");
+  const mdxPosts = useSortedBlogPosts();
+  const blogPosts = useMemo(
+    () => transformMdxPostsToDisplayFormat(mdxPosts),
+    [mdxPosts],
+  );
+
+  const isMobile = /Mobi|Android|iPhone/i.test(navigator.userAgent);
 
   const renderLayout = () => {
     switch (currentLayout) {
@@ -92,16 +72,19 @@ export default function BlogContent() {
           </motion.p>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, filter: "blur(4px)", y: 10 }}
-          animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
-          transition={{ duration: 0.6, delay: 0.7 }}
-        >
-          <BlogLayoutToggle
-            currentLayout={currentLayout}
-            onLayoutChange={setCurrentLayout}
-          />
-        </motion.div>
+        {!isMobile && (
+          <motion.div
+            initial={{ opacity: 0, filter: "blur(4px)", y: 10 }}
+            animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+            transition={{ duration: 0.6, delay: 0.7 }}
+            className={isMobile ? "hidden" : ""}
+          >
+            <BlogLayoutToggle
+              currentLayout={currentLayout}
+              onLayoutChange={setCurrentLayout}
+            />
+          </motion.div>
+        )}
       </div>
 
       {/* Blog Posts */}

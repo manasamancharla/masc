@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router";
+
 interface BlogPost {
   id: string;
   title: string;
@@ -6,6 +8,7 @@ interface BlogPost {
   readTime: string;
   category: string;
   imageUrl: string;
+  slug: string;
 }
 
 interface ListLayoutProps {
@@ -13,11 +16,14 @@ interface ListLayoutProps {
 }
 
 export function ListLayout({ posts }: ListLayoutProps) {
+  const navigate = useNavigate();
+
   return (
     <div className="space-y-4">
       {posts.map((post) => (
         <article
           key={post.id}
+          onClick={() => navigate(`/blog/${post.slug}`)}
           className="group flex gap-4 p-4 rounded-lg bg-transparent hover:shadow-lg transition-shadow cursor-pointer"
         >
           <div className="shrink-0 w-48 h-32 rounded-lg overflow-hidden">

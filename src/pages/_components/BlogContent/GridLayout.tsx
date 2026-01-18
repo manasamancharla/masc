@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router";
+
 interface BlogPost {
   id: string;
   title: string;
@@ -6,6 +8,7 @@ interface BlogPost {
   readTime: string;
   category: string;
   imageUrl: string;
+  slug: string;
 }
 
 interface GridLayoutProps {
@@ -13,11 +16,14 @@ interface GridLayoutProps {
 }
 
 export function GridLayout({ posts }: GridLayoutProps) {
+  const navigate = useNavigate();
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {posts.map((post) => (
         <article
           key={post.id}
+          onClick={() => navigate(`/blog/${post.slug}`)}
           className="group rounded-lg overflow-hidden bg-transparent shadow-md hover:shadow-lg transition-shadow cursor-pointer"
         >
           <div className="relative overflow-hidden h-40">
