@@ -22,7 +22,7 @@ const Intro = () => {
           <Insights />
           <Projects />
           <Contact />
-          <Chatbot />
+          {/* <Chatbot /> */}
         </main>
       </PageTransition>
     </>
