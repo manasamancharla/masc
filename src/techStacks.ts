@@ -9,6 +9,7 @@ import { Prisma } from "./components/icons/Prisma";
 import { Terraform } from "./components/icons/Terraform";
 import { Bash } from "./components/icons/Bash";
 import { Kubernetes } from "./components/icons/Kubernetes";
+import { Linux } from "./components/icons/Linux";
 import type { JSX, SVGProps } from "react";
 
 type TechStack = {
@@ -84,6 +85,11 @@ const techStacks: TechStack[] = [
     icon: Kubernetes,
     description:
       "Kubernetes is an open-source container orchestration platform that automates the deployment, scaling, and management of containerized applications.",
+  },
+  {
+    name: "Linux",
+    icon: Linux,
+    description: "Linux",
   },
 ];
 

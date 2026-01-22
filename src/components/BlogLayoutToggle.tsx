@@ -1,4 +1,5 @@
-import { About } from "./icons/About";
+import { Grid } from "./icons/Grid";
+import { List } from "./icons/List";
 
 export type BlogLayout = "grid" | "list";
 
@@ -23,7 +24,7 @@ export function BlogLayoutToggle({
         className={`${baseBtn} ${currentLayout === "grid" ? activeBtn : ""}`}
         aria-label="Grid view"
       >
-        <About className="h-4 w-4" />
+        <Grid className="h-4 w-4" />
       </button>
 
       <button
@@ -31,7 +32,7 @@ export function BlogLayoutToggle({
         className={`${baseBtn} ${currentLayout === "list" ? activeBtn : ""}`}
         aria-label="List view"
       >
-        <About className="h-4 w-4" />
+        <List className="h-4 w-4" />
       </button>
     </div>
   );
