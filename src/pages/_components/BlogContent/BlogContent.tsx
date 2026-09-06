@@ -10,7 +10,7 @@ import { motion } from "motion/react";
 import {
   useSortedBlogPosts,
   formatDate,
-  estimateReadingTime,
+  // estimateReadingTime,
 } from "@/lib/blog";
 
 // Transform MDX posts to match the expected blog post format
