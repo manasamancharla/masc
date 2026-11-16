@@ -8,7 +8,6 @@
     "skipLibCheck": true,
 
     /* Resolve paths */
-    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
     },
